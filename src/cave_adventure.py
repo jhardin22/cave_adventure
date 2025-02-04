@@ -168,8 +168,7 @@ def three_doors_options():
                   "2. A Blue Door (enter 'blue')\n"
                   "3. A Dark Path (enter 'dark')\n"
                   "4. Pet the dog (enter 'pet')\n"
-                  if "ring" in player_inventory:
-                      "5. Leave the cave (enter 'leave')\n"
+                  "5. Leave the cave (enter 'leave')\n"
                   "Which path do you choose, or do you wish to save (enter 'save')? ", ["red", "blue", "dark", "pet", "leave", "save"])
         
     if choice.lower() == "red":
