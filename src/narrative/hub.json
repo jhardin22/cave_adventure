@@ -1,0 +1,43 @@
+{
+    "description": "The cave mouth yawns ominously before you.  something about the cave makes you want to go in, even though its definitely scary.", 
+    "events": {
+      "deeper": {
+        "prompt": "You bravely venture deeper into the cave... \n  As you go further, you begin to hear a faint melody; \n  The sound grows louder, and you round a corner to see... \n A large, fluffy white dog sitting on a rock, playing a flute! \n The dog looks at you with intelligent eyes and continues to play. Do you approach the dog (enter 'approach') or quietly observe from a distance (enter 'observe')?",
+        "approach": {
+          "description": "As you delve deeper, you hear a faint dripping sound.  You follow the sound and discover a hidden chamber.",
+          "leads_to": "hidden_chamber",
+          "item": "old_map" // Example item you find
+        },
+        "back": {
+          "description": "You decide the dark tunnel is too ominous and turn back.",
+          "leads_to": "crossroads"
+        }
+      },
+      "east": {
+        "prompt": "You begin to climb the winding staircase. It's steep and the steps are worn. (enter 'climb' or 'back')",
+        "climb": {
+          "description": "The staircase leads to a small, dusty attic.  Sunlight streams through a crack in the boarded-up window.",
+          "leads_to": "attic"
+        },
+        "back": {
+          "description": "Your legs begin to tire, and you decide to return to the crossroads.",
+          "leads_to": "crossroads"
+        }
+      },
+      "west": {
+        "prompt": "You cautiously step onto the rickety bridge. It sways precariously in the wind. (enter 'cross' or 'back')",
+        "cross": {
+          "description": "You carefully make your way across the bridge. On the other side, you see a mysterious cave entrance.",
+          "leads_to": "cave_entrance",
+          "requires_item": "rope" // Example required item
+        },
+        "back": {
+          "description": "The bridge makes you nervous, and you decide to return to solid ground.",
+          "leads_to": "crossroads"
+        },
+        "no_rope": { // Specific response if you don't have the rope
+          "description": "You can't cross without a rope!"
+        }
+      }
+    }
+  }

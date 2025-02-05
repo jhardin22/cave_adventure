@@ -1,0 +1,68 @@
+{
+    "description": [
+        "Something inside you swells, there's a feeling of hope and excitement. As your excitement build you reach out and touch the door, \n",  
+        "feeling something calling you from the other side. The door opens and you step through. \n",  
+        "As you step through, you find yourself in a comfortably lit hallway. A blue carpet runs down the hall and around the corner. \n", 
+        "The air in the hall is warm, and there is a a faint smell of another person in the air. The feeling of excitement falls as you walk \n",
+        "down the hall, but something about the smell keeps the feeling from leaving you completely.",
+        "You reach the end of the hall and find an open doorway with a sign that reads 'Blue Room'."
+        ],    
+    "events": {
+        "man_in_the_room": {
+            "prompt": ["A man sits at a desk in the room, writing in a book. He looks up as you enter and smiles. Hope and excitement inexplicably swell again. \n",
+              " 'Wow, I've been here for ages. It's good to see you. I've been alone for a long time. Would you like to sit with me?' (sit, talk, leave) \n"
+            ],
+            "sit":{ 
+                "description": ["You sit down and start talking to the man. He tells you about his life and how he has been cursed. \n",
+                  "to stay in the room. As the two of you talk the feeling of hope and excitement ebbs and flows. Something inside of \n",
+                  "you is drawn to the man and the room. You feel like you could stay here forever. Nothing about the man seems special,  \n",
+                  "but a bond forms between you. \n\n",
+                  " 'Will you marry me?' \n\n", 
+                  "The question comes out of nowhere. You're not sure how to respond at first, but the longer \n",
+                  "you sit with the question the more certain you become. \n"
+                ],
+                "leads_to": "proposal"
+            },
+            "talk": {
+                "description": ["You take a deep breath and reign in your excitement. You give him your name and ask for his. \n",
+                  "He tells you his name is John. You ask him how he came to be in the room. \n",
+                  "He tells you that he's been here for a long time, but he can't remember how he got here. \n",
+                  "He tells you that he's been alone for so long, and he's glad to have someone to talk to. \n",
+                  "You talk for a while, and the feeling of hope and excitement grows. There's nothing special \n",
+                  "about him or the room you that you can see, but you feel like you could stay here forever with him. \n",
+                  "Something within you tells you that staying in the room would be a bad thing, but something has \n",
+                  "forged a bond between you and John. \n\n",
+                  "You ask him if he wants to leave the room with you. \n",
+                  " 'I can't leave the room,' he says. 'I'm stuck here.' \n",
+                  "Underneath the feeling of hope and excitement, you feel a deep sadness. You know you can't stay, but you \n",
+                  "can't leave John either. \n",
+                  " 'I'm sorry,' you say. 'I can't stay here. How can I help you?' \n\n",
+                  " 'Will you marry me?' \n\n",
+                  "The question comes out of nowhere. You're not sure how to respond at first, but the longer \n",
+                  "you sit with the question the more certain you become. \n"
+                ],
+                "leads_to": "proposal"
+            },
+            "leave": {
+                "description": ["You take a deep breath and reign in your excitement. Something about this place is pressing \n",
+                  "on you, making you feel things that you can tell aren't from you. \n",
+                  " 'I'm sorry!' you blurt. Underneath the feeling of hope and excitement, you feel fear rising in you. \n",
+                  "You turn and run from the room, but the feeling of hope and excitement follows you, somehow still present \n",
+                  "even in the face of your growing terror. You run down the hall and back through the door, but the feelings \n",
+                  "all stay with you. A tide of pressure and emotion that you can't shake. \n",
+                  "You black out."
+                ],
+                "leads_to": "dog_encounter"
+            }
+        },
+        "barred":{
+            "prompt": ["You can feel the man somehow. As you approach the door, you can sense him on the other side.\n",
+              "You reach out and touch the door, feeling the warmth of the ring on your hand. Frustration and longing \n",
+              "fill you as the door refuses to open. The door is obstinate, and refuses to admit you. \n",
+              "With tears in your eyes and a heavy heart, you turn back to the cave entrance."
+            ],
+            "leads_to": "dog_encounter"
+        }
+
+    }
+}
