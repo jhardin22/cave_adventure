@@ -1,3 +1,6 @@
+from game_utils import save_game  # Import the save_game function in room module
+from game_utils import silly_flute  # Import the silly_flute function in room module
+
 def transit_door(player_inventory, current_location, progress_summary):
     if "ring" not in player_inventory:
         print("You approach the blue door.")
