@@ -5,38 +5,72 @@
         "prompt": "You bravely venture deeper into the cave... \n  As you go further, you begin to hear a faint melody; \n  The sound grows louder, and you round a corner to see... \n A large, fluffy white dog sitting on a rock, playing a flute! \n The dog looks at you with intelligent eyes and continues to play. Do you approach the dog (enter 'approach') or quietly observe from a distance (enter 'observe')?",
         "approach": {
           "description": "As you delve deeper, you hear a faint dripping sound.  You follow the sound and discover a hidden chamber.",
-          "leads_to": "hidden_chamber",
-          "item": "old_map" // Example item you find
+          "leads_to": "pet_dog",
         },
-        "back": {
-          "description": "You decide the dark tunnel is too ominous and turn back.",
-          "leads_to": "crossroads"
+        "observe": {
+          "description": ["You decide to observe the dog from a distance. \n",
+          "The dog continues to play its flute, the music echoing through the cave. \n",
+          "You enjoy the peaceful melody for a while, then decide to move on.",
+          "The dog continues to play its flute, seemingly lost in the music."]
+          "leads_to": "observe_dog"
         }
       },
-      "east": {
+      "observe_dog":{
+        "prompt":"Do you approach (enter 'approach') or turn back (enter 'leave')?")],
+        "approach":{
+          "leads_to": "pet_dog"
+        },
+        "leave":{
+          "leads_to": "no_strings_attached"
+        }
+      },
+      "pet_dog":{
+        "prompt": "Do you pet the dog (enter 'pet') or turn back (enter 'back')? \n",
+        "pet":{
+          "description": "You approach the dog and pet it. \n",
+          "leads_to": "pet_dog"
+        },
+        "back":{
+          "leads_to": "deeper"
+        }
+      }
+      "bereft": {
         "prompt": "You begin to climb the winding staircase. It's steep and the steps are worn. (enter 'climb' or 'back')",
         "climb": {
           "description": "The staircase leads to a small, dusty attic.  Sunlight streams through a crack in the boarded-up window.",
-          "leads_to": "attic"
+          "leads_to": ""
         },
         "back": {
           "description": "Your legs begin to tire, and you decide to return to the crossroads.",
           "leads_to": "crossroads"
         }
       },
-      "west": {
+      "unfinished": {
         "prompt": "You cautiously step onto the rickety bridge. It sways precariously in the wind. (enter 'cross' or 'back')",
         "cross": {
           "description": "You carefully make your way across the bridge. On the other side, you see a mysterious cave entrance.",
           "leads_to": "cave_entrance",
           "requires_item": "rope" // Example required item
+        }
+      "no_strings_attached": {
+        "description": "The bridge makes you nervous, and you decide to return to solid ground.",
+        "leads_to": ""
         },
-        "back": {
-          "description": "The bridge makes you nervous, and you decide to return to solid ground.",
-          "leads_to": "crossroads"
+        "blue_door":{
+          "description": "You open the blue door and step inside. It's dark and musty, but you can see a fa"
+          "required_item": "flute"
+          "locking_item": "ring"
+          "locked_message_in":{
+            "description": "You open the locked door and step inside. It's dark and musty, but you can see a fa"
+          } 
+          "leads_to": "locked_in"
+          "locked_message_out": ["You can feel the man somehow. As you approach the door, you can sense him on the other side.\n",
+          "As you touch the door, you feel the ring on your hand begin to warm. Frustration and longing \n",
+          "fill you as the door refuses to open. The door is obstinate, and refuses to admit you. \n",
+          "With tears in your eyes and a heavy heart, you turn back to the cave entrance."]
         },
-        "no_rope": { // Specific response if you don't have the rope
-          "description": "You can't cross without a rope!"
+        
+          
         }
       }
     }
