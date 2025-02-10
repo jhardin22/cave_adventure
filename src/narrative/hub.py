@@ -5,17 +5,17 @@ from room import Room
 
 hub = Room("Cave Entrance", "cave_entrance")
 
-def handle_entrance(game_state):
-    game_utils.check_map(game_state.progress_summary, game_state.current_location)
-    game_utils.check_inventory(game_state.player_inventory)
+def handle_entrance(player_inventory, current_location, progress_summary):
+    game_utils.check_map(progress_summary, current_location)
+    game_utils.check_inventory(player_inventory)
     choice = game_utils.action( , )
 
     if choice.lower() == "deeper":
-        enter(game_state)
+        enter(player_inventory, current_location, progress_summary)
     elif choice.lower() == "back":
-        turn_back(game_state)
+        turn_back(player_inventory, current_location, progress_summary)
     elif choice.lower() == "save":
-        game_utils.save_game(game_state)
+        game_utils.save_game(player_inventory, current_location, progress_summary)
         handle_entrance() # Return to the cave entrance options after saving
 
 
@@ -35,20 +35,20 @@ def enter(player_inventory, current_location, progress_summary):
         turn_back(player_inventory, current_location, progress_summary)
 
 
-def exit_cave(game_state):
-    if "ring" in game_state.player_inventory:
+def turn_back(player_inventory, current_location, progress_summary):
+    if "ring" in player_inventory:
         print("You decide to turn back and leave the cave.")
         print("As you walk back, you feel the warmth of the ring on your finger.")
         print("Greif and loss fill you as you leave the cave. You can feel that something is missing forever.")
-        game_utils.save_game(game_state)
-        input("Lost things can still be found. Press 'enter'")
+        game_utils.save_game(player_inventory, current_location, progress_summary)
+        game_utils.action("Lost things can still be found. Press 'enter'", [""])
         exit()
-    elif "crown" in game_state.player_inventory:
+    elif "crown" in player_inventory:
         print("")
-        game_utils.save_game(game_state)
-    elif game_state.player_inventory == ["completed"]:
+        game_utils.save_game(player_inventory, current_location, progress_summary)
+    elif player_inventory == ["completed"]:
         print("")
-        game_utils.save_game(game_state)
+        game_utils.save_game(player_inventory, current_location, progress_summary)
     print("You wisely decide to turn back.")
     print("You make your way safely out of the cave.")
     print("You have escaped the cave's mysteries... for now.")
@@ -134,10 +134,10 @@ def dog_encounter():
     three_doors_options()
 '''
 
-def three_doors_options(game_state):
+def three_doors_options(player_inventory, current_location, progress_summary):
     print("A red (red) door, a blue (blue) door, and a dark (dark) path deeper into the cave appear.")
 
-    choice = game_utils.evaluate_choice("You stand next to the dog in the cave entrance. Three paths lie before you:\n"
+    choice = game_utils.action("You stand next to the dog in the cave entrance. Three paths lie before you:\n"
                   "1. A Red Door (enter 'red')\n"
                   "2. A Blue Door (enter 'blue')\n"
                   "3. A Dark Path (enter 'dark')\n"
@@ -148,13 +148,13 @@ def three_doors_options(game_state):
     if choice.lower() == "red":
         red_room.enter(player_inventory, progress_summary, current_location)
     elif choice.lower() == "blue":
-        blue_room.enter(game_state)
+        blue_room.enter(player_inventory, progress_summary, current_location)
     elif choice.lower() == "dark":
         dark_room.enter(player_inventory, progress_summary, current_location)
     elif choice.lower() == "pet":
         pet_dog()
     elif choice.lower() == "leave":
-        cave_exit(game_state)
+        turn_back(player_inventory, current_location, progress_summary)
     elif choice.lower() == "save":
         game_utils.save_game(player_inventory, current_location, progress_summary)
         three_doors_options()

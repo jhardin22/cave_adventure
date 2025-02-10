@@ -1,38 +1,37 @@
 import json  # For save/load
-from classes import branches # Import room modules
-from game_utils import GameState
+from classes import rooms # Import room modules
 
+player_inventory = []  # Player's inventory
+current_location = "cave_entrance" # Keep track of where the player is
+progress_summary = []  # Keep track of the player's progress
 
-
-game_state = GameState()
-
-def start_game(game_state):
+def start_game(player_inventory, current_location, progress_summary):
     print("You stand at the entrance of a mysterious cave.")
-    current_location = "start" # Set the current location
+    current_location = "cave_entrance" # Set the current location
     # Check for save file
     try:
         with open("save_game.json", "r") as f:
             saved_data = json.load(f)
-            game_state.player_inventory = saved_data["inventory"]
-            game_state.current_location = saved_data["location"]
-            game_state.progress_summary = saved_data["progress"]
+            player_inventory = saved_data["inventory"]
+            current_location = saved_data["location"]
+            progress_summary = saved_data["progress"]
             print("Game loaded successfully!")
-            print(f"You are at the {game_state.current_location}.") # Tell the player where they are.
-            print(f"{game_state.progress_summary}") 
+            print(f"You are at the {current_location}.") # Tell the player where they are.
+            print(f"{progress_summary}") 
     except FileNotFoundError:
         print("No save game found. Starting a new game.")
-    while game_state.player_inventory != ["completed"]:
-        if current_location == "start":
-            branches.hub.handle_entrance(game_state)
+    while player_inventory != ["completed"]:
+        if current_location == "cave_entrance":
+            rooms.hub.handle_entrance(player_inventory, current_location, progress_summary)
         elif current_location == "dog_encounter":
-            branches.hub.handle_dog(game_state)
+            rooms.hub.handle_dog(player_inventory, current_location, progress_summary)
         elif "red_rooms" in current_location:
-            branches.red.red_room.enter(game_state)
+            rooms.red_room.enter(player_inventory, progress_summary, current_location)
         elif "blue_rooms" in current_location:
-            branches.blue.blue_room.enter(game_state)
+            rooms.blue_room.enter(player_inventory, progress_summary, current_location)
         elif "dark_rooms" in current_location:
-            branches.dark.dark_room.enter(game_state)
-    branches.hub.exit(game_state)
+            rooms.dark_room.enter(player_inventory, progress_summary, current_location)
+    rooms.hub.turn_back()
     # ... Add more locations and their corresponding functions   
 
-start_game(game_state)  # Start the game!
+start_game()  # Start the game!
