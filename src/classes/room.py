@@ -1,44 +1,30 @@
-import json
 import game_utils
 
+
 class Room:
-    def __init__(self, name, narrative_file):
+    def __init__(self, name, filename, events):
         self.name = name
-        self.narrative = game_utils.load_narrative_data(narrative_file)
-        self.events = []          
+        self.narrative = game_utils.load_narrative_data(filename)
+        self.events = {}
+        self.locked_out = False          
         
-    def enter(self, player_inventory):
-        print(self.narrative["description"])
+    def enter(self, game_state):
+        print(self.narrative.get("description", "You are in a room."))
 
-        while True:
-            for event_name, event_data in self.narrative["events"].items():
-                print(f"- {event_data.get('prompt', event_name)}")  # Display prompt or event name
+        for event_name in self.narrative.get("events", {}):
+            print(f"- {event_name}")
 
-            choice = input("What do you do? ").lower()
+        choice = input("What do you choose to do?").lower()
 
-            if choice in self.events:  # Check if the choice matches a registered event
-                next_location = self.handle_event(choice, player_inventory)
-                if next_location:
-                    return next_location # Return the next location if there is one
-            else:
-                print("Invalid choice.")
+        if choice in self.narrative.get("events", {}):
+            event_data = self.narrative["events"][choice]
+            return self.handle_event(choice, event_data, game_state)
+        
+        else:
+            print("Invalid choice.")
+            return None
 
-    def handle_event(self, event_name, player_inventory):
-        event_function = self.events.get(event_name)
-        event_data = self.narrative["events"][event_name]
 
-        if event_function:
-            outcome = event_function(player_inventory, event_data)  # Call the main event function
-            while outcome: # Handle a chain of leads_to_event
-                next_event = None
-                if isinstance(outcome, dict): # Check if it is a dictionary like {"leads_to_event": "next_event"} or a simple {"leads_to": "next_room"}
-                    next_event = handle_leads_to(outcome)
-                    handle_item(outcome, player_inventory) # Handle item acquisition
-                if next_event and next_event in self.narrative["events"]: # Check if leads_to_event exists
-                    event_data = self.narrative["events"][next_event]
-                    event_function = self.events.get(next_event)
-                    outcome = event_function(player_inventory, event_data)
-                elif isinstance(outcome, dict): # Check if it is a dictionary like {"leads_to": "next_room"}
-                    next_event = handle_leads_to(outcome)
-                outcome = next_event # Update the outcome
-            return outcome # Return the final result
+    def handle_event(self, event_name, event_data, game_state):
+        print(f"You chose: {event_name}")
+        return None #Stay in the same room for now

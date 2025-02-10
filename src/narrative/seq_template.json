@@ -1,0 +1,17 @@
+// narrative/blue_room.json
+{
+    "description": "You are in the Blue Room.",
+    "events": [  // Events are now a *list*
+      {
+        "name": "examine_table",
+        "prompt": "Examine the table.",
+        "leads_to_event": "find_key" // Leads to the next event
+      },
+      {
+        "name": "find_key",
+        "prompt": "You found a key!",
+        "item": { /* ... */ },
+        "leads_to": "next_room" // Leads to the next room
+      }
+    ]
+  }
