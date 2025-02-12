@@ -1,0 +1,84 @@
+{
+    "description": "The cave mouth yawns ominously before you. Something about the cave makes you want to go in, even though its definitely scary.", 
+    "adventure_start": {
+      "prompt": "You bravely venture deeper into the cave... \n  As you go further, you begin to hear a faint melody; \n  The sound grows louder, and you round a corner to see... \n A large, fluffy white dog sitting on a rock, playing a flute! \n The dog looks at you with intelligent eyes and continues to play. Do you approach the dog (enter 'approach') or quietly observe from a distance (enter 'observe')?",
+        "options": {
+        "approach": "approach_dog",
+        "observe": "observe_dog",
+        "turn back": "turn_back"
+      }
+    },
+    "persistent_events":{
+      "pet_dog":{
+        "prompt": "You reach out and pet the dog. His long hair starts to fly all around the cavern. \n",
+          "dynamic_responses": {
+            "empty_inventory":{
+              "requires_empty_inventory": true,
+              "response": ["You got a bag of treats! \n  'Thanks! I love pets. Since you're so nice, I'll give you this bag to get started.' \n"],
+              "item": {
+                "name":"bag",
+                "description": "A bag full of dog treats; smells like meat.",
+                "color": "brown",
+                "leads_to_event": "get_flute"
+              }
+            },
+            "has_flute": "",
+            "has_ring": "",
+            "has_crown": "",
+            "has_book": "",
+            "found_man": ""
+          }
+        },
+      "turn_back": {
+        "prompt": "You turn toward the cave entrance and walk towards a glimmer of light. \n",
+          "dynamic_responses":{
+            "empty_inventory": {
+              "requires_empty_inventory": true,
+              "response": ""
+            },
+            "has_flute": "",
+            "has_ring": "",
+            "has_crown": "",
+            "has_book": "",
+            "found_man": ""
+          }
+      },
+      "three_doors":{
+        
+      }
+    },
+    "events": {
+      "observe_dog": {
+        "prompt": ["You decide to observe the dog from a distance. \n",
+          "The dog continues to play its flute, the music echoing through the cave. \n",
+          "You enjoy the peaceful melody for a while, then decide to move on. \n",
+          "The dog continues to play its flute, seemingly lost in the music."],
+        "description": "Will you approach?",
+          "options": {
+            "approach": "approach_dog",
+            "turn back": "turn_back"
+          }
+      },
+      "approach_dog": {
+        "prompt": ["You cautiously approach the dog, careful not to startle it. As you get closer, the dog stops playing and wags its tail. \n ",
+          "It seems friendly! \n"],
+        "description": " 'Hello! I see you have decided to enter the cave. Would you like to pet me (enter 'pet') , or ask me a question? (enter 'question') \n", 
+        "options": {
+          "pet": "pet_dog",
+          "question": "question_dog"
+        }
+        
+      },
+      "question_dog": {
+        "prompt": ["You ask the dog a question. \n",
+          " 'How can you play the flute without fingers or lips?' \n",
+          "The Dog answers, \n",
+          " 'You're not even going to ask how I can talk?' \n",
+          " 'I'm a magical dog, I can do anything I want. I'm here to help you on your journey.' \n"],
+        "description": " 'I'll give you this bag of dog treats to get started...If you give me something first...(enter 'pet')'",
+        "options": {
+          "pet": "pet_dog" 
+        }
+      }
+    }
+}
