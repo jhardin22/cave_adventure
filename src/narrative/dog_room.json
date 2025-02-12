@@ -23,10 +23,10 @@
               }
             },
             "has_flute": "",
-            "has_ring": "",
-            "has_crown": "",
-            "has_book": "",
-            "found_man": ""
+            "has_blue": "",
+            "has_red": "",
+            "has_black": "",
+            "saved_man": ""
           }
         },
       "turn_back": {
@@ -40,11 +40,55 @@
             "has_ring": "",
             "has_crown": "",
             "has_book": "",
-            "found_man": ""
+            "saved_man": ""
           }
       },
-      "three_doors":{
-        
+      "choose_door":{
+        "prompt": "A red door, a blue door, and a black door sit at the end of the cavern. (red, blue, dark)",
+        "options":{
+          "red": {
+            "dynamic_responses": {
+              "empty_inventory": {
+                "requires_empty_inventory": true,
+                "response": ""
+              },
+              "has_flute": "",
+              "has_blue": "",
+              "has_red": "",
+              "has_black": "",
+              "saved_man": ""
+            }
+
+          },
+          "blue": {
+            "dynamic_responses": {
+              "empty_inventory": {
+                "requires_empty_inventory": true,
+                "response": ""
+              },
+              "has_flute": "",
+              "has_blue": "",
+              "has_red": "",
+              "has_black": "",
+              "saved_man": ""
+            }
+
+          },
+          "black": {
+            "dynamic_responses": {
+              "empty_inventory": {
+                "requires_empty_inventory": true,
+                "response": ""
+              },
+              "has_flute": "",
+              "has_blue": "",
+              "has_red": "",
+              "has_black": "",
+              "saved_man": ""
+            }
+
+          }
+        }
       }
     },
     "events": {
@@ -53,7 +97,7 @@
           "The dog continues to play its flute, the music echoing through the cave. \n",
           "You enjoy the peaceful melody for a while, then decide to move on. \n",
           "The dog continues to play its flute, seemingly lost in the music."],
-        "description": "Will you approach?",
+        "description": "Will you approach? (approach, 'turn back')",
           "options": {
             "approach": "approach_dog",
             "turn back": "turn_back"
@@ -78,6 +122,15 @@
         "description": " 'I'll give you this bag of dog treats to get started...If you give me something first...(enter 'pet')'",
         "options": {
           "pet": "pet_dog" 
+        }
+      },
+      "flute": {
+        "prompt": "",
+        "item": {
+          "name":"flute",
+          "description": "Flute",
+          "color": "brown",
+          "leads_to_event": "choose_door"
         }
       }
     }
