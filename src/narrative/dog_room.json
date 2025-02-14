@@ -1,13 +1,6 @@
 {
     "description": "The cave mouth yawns ominously before you. Something about the cave makes you want to go in, even though its definitely scary.", 
-    "adventure_start": {
-      "prompt": "You bravely venture deeper into the cave... \n  As you go further, you begin to hear a faint melody; \n  The sound grows louder, and you round a corner to see... \n A large, fluffy white dog sitting on a rock, playing a flute! \n The dog looks at you with intelligent eyes and continues to play. Do you approach the dog (enter 'approach') or quietly observe from a distance (enter 'observe')?",
-        "options": {
-        "approach": "approach_dog",
-        "observe": "observe_dog",
-        "turn back": "turn_back"
-      }
-    },
+    "initial_event": "adventure_start",
     "persistent_events":{
       "pet_dog":{
         "prompt": "You reach out and pet the dog. His long hair starts to fly all around the cavern. \n",
@@ -22,7 +15,10 @@
                 "leads_to_event": "get_flute"
               }
             },
-            "has_flute": "",
+            "has_flute": {
+              "requires_item": "flute",
+              "response": " 'Thanks! I love pets. If you're looking for advice, I'd start with the blue door.' \n"
+            },
             "has_blue": "",
             "has_red": "",
             "has_black": "",
@@ -92,12 +88,19 @@
       }
     },
     "events": {
+      "description": "You bravely venture deeper into the cave... \n  As you go further, you begin to hear a faint melody; \n  The sound grows louder, and you round a corner to see... \n A large, fluffy white dog sitting on a rock, playing a flute! \n The dog looks at you with intelligent eyes and continues to play. \n",
+      "prompt": "Do you approach the dog or quietly observe from a distance ('approach', 'observe', 'turn back')? \n",
+      "options": {
+      "approach": "approach_dog",
+      "observe": "observe_dog",
+      "turn back": "turn_back"
+      },
       "observe_dog": {
         "prompt": ["You decide to observe the dog from a distance. \n",
           "The dog continues to play its flute, the music echoing through the cave. \n",
           "You enjoy the peaceful melody for a while, then decide to move on. \n",
-          "The dog continues to play its flute, seemingly lost in the music."],
-        "description": "Will you approach? (approach, 'turn back')",
+          "The dog continues to play its flute, seemingly lost in the music. \n"],
+        "description": "Will you approach? ('approach', 'turn back') \n",
           "options": {
             "approach": "approach_dog",
             "turn back": "turn_back"

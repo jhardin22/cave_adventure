@@ -1,6 +1,7 @@
 from game_utils import save_game  # Import the save_game function in room module
 from game_utils import silly_flute  # Import the silly_flute function in room module
 from classes.room import Room  # Import the Room class from classes module
+import game_state
 
 # Load the JSON narrative data (outside any functions) - This is key!
 try:
@@ -40,8 +41,7 @@ def blue_room_options():
             if choice.lower() == "yes":
                 blue_bedroom()
                 
-def blue_bedroom():
-    global player_inventory, current_location, progress_summary
+def blue_bedroom(game_state):
     print("You say yes! \n" "Tears fill your eyes and the eyes of the man. The two of you get up from the table and hold handsx \n"
                       "You walk to a bed in the corner of the room, sheltered by a screen... \n"
                       "As the two of you sit together, the feeling of hope and excitement has given way to satisfaction and contentment. \n"
@@ -49,11 +49,11 @@ def blue_bedroom():
                       " 'I love you. Thank you for loving me. I'm trapped here, but take this so we can be together and remember each other.' \n"
                       "The man holds out his hand and shows you two rings. As you reach out to touch them, he takes your left hand and puts a \n" 
                       "small thin band on your ring finger. \n")
-    player_inventory.append("ring")
+    game_state.player_inventory.append("ring")
     print(" 'Would you play me a song?' \n You pull out the flute and play a joyful tune.") 
     print("Music fills the room, and the lights seem to grow brighter. After you finish the song, you reach down and put the other ring on the hand of the man. \n"
                       "You promise your undying love to him. As the ring slips over his last knuckle, the room starts to fade. \n"
                       "You hold on to the headboard of the bed, but a feeling of grief and loss washes over you, as the room fades to black. \n"
                       "Something warm and wet rubs across your face. You open your eyes to see the dog licking your face. \n"
                       " 'You're awake! I was worried you'd never wake up. You've been out for a while.' \n")
-    progress_summary.append("You found, and lost the love of your life.")
+    game_state.progress_summary.append("You found, and lost the love of your life.")

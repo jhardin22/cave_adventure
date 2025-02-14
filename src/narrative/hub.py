@@ -44,10 +44,10 @@ def turn_back(player_inventory, current_location, progress_summary):
         game_utils.action("Lost things can still be found. Press 'enter'", [""])
         exit()
     elif "crown" in player_inventory:
-        print("")
+        print("crown_text")
         game_utils.save_game(player_inventory, current_location, progress_summary)
     elif player_inventory == ["completed"]:
-        print("")
+        print("completion")
         game_utils.save_game(player_inventory, current_location, progress_summary)
     print("You wisely decide to turn back.")
     print("You make your way safely out of the cave.")
